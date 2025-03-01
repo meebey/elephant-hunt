@@ -1,6 +1,6 @@
 module elephant-hunt
 
-go 1.23.2
+go 1.19
 
 require (
 	code.cloudfoundry.org/bytefmt v0.29.0 // indirect

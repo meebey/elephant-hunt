@@ -1,0 +1,99 @@
+name: auto-ci-builds
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  build_go_macOS-latest:
+    runs-on: macOS-latest
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-go@v5
+      with:
+        go-version: '1.19.x'
+        check-latest: true
+    - name: check OS and architecture
+      run: |
+        uname -o -r -m
+    - name: check go version
+      run: |
+        go version
+    - name: install go dependencies
+      run: |
+        go get && go mod tidy
+    - name: go build
+      run: |
+        go build main.go
+    - name: run
+      run: |
+        ./main
+
+  build_nix_macOS-latest:
+    runs-on: macOS-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: check OS and architecture
+      run: |
+        uname -o -r -m
+    - name: install nix package manager
+      run: |
+        sh <(curl -L https://nixos.org/nix/install)
+    - name: check Nix version
+      run: |
+        . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' # activate nix environment
+        nix --version
+        nix-channel --list
+    - name: switch to NixOS stable channel
+      run: |
+        . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' # activate nix environment
+        nix-channel --remove nixos
+        nix-channel --remove nixpkgs
+        nix-channel --add https://nixos.org/channels/nixos-24.11 nixos
+        nix-channel --add https://nixos.org/channels/nixos-24.11 nixpkgs
+    - name: list and update channel
+      run: |
+        . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' # activate nix environment
+        nix-channel --list
+        nix-channel --update
+    - name: build nix package
+      run: |
+        . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' # activate nix environment
+        nix-build --expr 'let pkgs = import <nixpkgs> { }; in pkgs.callPackage ./package.nix { }'
+    - name: run
+      run: |
+        find ./result
+
+  build_go_Debian-stable:
+    runs-on: ubuntu-latest
+    container: debian:stable
+    steps:
+    - uses: actions/checkout@v1
+    - name: check Debian version
+      run: |
+        cat /etc/debian_version
+    - name: install sudo and moreutils (for chronic)
+      run: |
+        echo "Detected APT sources:"
+        grep deb /etc/apt/sources.list /etc/apt/sources.list.d/* | grep -v ":#"
+        apt update
+        apt install --yes sudo moreutils
+    - name: install ca-certificates for HTTPS support
+      run: |
+        sudo apt install --yes ca-certificates
+    - name: install build dependencies
+      run: |
+        sudo apt install --yes golang
+    - name: check go version
+      run: |
+        go version
+    - name: install go dependencies
+      run: |
+        go get && go mod tidy
+    - name: go build
+      run: |
+        go build main.go
+    - name: run
+      run: |
+        ./main
+
