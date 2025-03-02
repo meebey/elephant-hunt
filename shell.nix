@@ -9,7 +9,11 @@ pkgs.mkShellNoCC {
     vscodium
     vscode-extensions.golang.go
     delve # for debugging Go apps
+    vscode-extensions.github.vscode-github-actions
   ];
+
+  # extensions must be activated from within codium. They are automatically
+  # recommended for this workspace via .vscode/extensions.json
 
   #inputsFrom = [ pkgs.hello pkgs.gnutar ];
 
