@@ -18,8 +18,8 @@ pkgs.mkShellNoCC {
   #inputsFrom = [ pkgs.hello pkgs.gnutar ];
 
   shellHook = ''
-    # put extra shell commands here
+    # start our codium and open this project workspace, happy hacking!
+    ${pkgs.vscodium}/bin/codium $PWD
   '';
 }
 
-# start "codium" from your shell and happy hacking!
