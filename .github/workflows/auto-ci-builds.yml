@@ -64,9 +64,9 @@ jobs:
       run: |
         find ./result
 
-  build_go_Debian-stable:
+  build_go_Debian-unstable:
     runs-on: ubuntu-latest
-    container: debian:stable
+    container: debian:unstable
     steps:
     - uses: actions/checkout@v1
     - name: check Debian version
