@@ -1,4 +1,4 @@
-module elephant-hunt
+module github.com/meebey/elephant-hunt
 
 go 1.23
 
