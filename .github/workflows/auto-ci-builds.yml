@@ -97,11 +97,11 @@ jobs:
       run: |
         ./main
 
-  security:
+  check_deps-security:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: Run Snyk to check for vulnerabilities
+      - name: Run Snyk to check dependencies for known vulnerabilities (SCA)
         uses: snyk/actions/golang@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
@@ -111,3 +111,17 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           command: monitor
+
+  check_code-security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: snyk/actions/setup@master
+        id: snyk
+      - name: Check Snyk version
+        run: echo "${{ steps.snyk.outputs.version }}"
+      - name: Run Snyk to check code for vulnerabilities (SAST)
+        run: |
+          snyk code test --org=2489fe40-ba6c-442e-82b1-210f9da9676d
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
