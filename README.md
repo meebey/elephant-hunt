@@ -6,6 +6,18 @@ Elephant Hunt
 
 ![GitHub Release Date](https://img.shields.io/github/release-date/meebey/elephant-hunt)
 
+A new risk-based methodology to identify application attack-surface.
+
+Currently supported:
+* quantification of attack-surface with size of executable binary and its shared libraries (excluding non-executable code)
+
+Future:
+* a risk-score approach instead of raw technical numbers (e.g. bytes)
+* privileged vs unprivileged user
+* analyse and assess language safeness
+* analyse open ports (needs privileged user)
+* report with break-down per executable and size of each loaded shared library
+
 Required Software
 =================
 * GoLang
