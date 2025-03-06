@@ -1,6 +1,6 @@
 Elephant Hunt
 =============
-[![License](https://img.shields.io/github/license/meebey/elephant-hunt.svg)](https://github.com/meebey/elephant-hunt/blob/master/LICENSE) [![GitHubCI pipeline status badge](https://github.com/meebey/elephant-hunt/workflows/auto-ci-builds/badge.svg)](https://github.com/meebey/elephant-hunt/commits/main) ![GitHub contributors](https://img.shields.io/github/contributors-anon/meebey/elephant-hunt)
+[![GitHubCI pipeline status badge](https://github.com/meebey/elephant-hunt/workflows/auto-ci-builds/badge.svg)](https://github.com/meebey/elephant-hunt/commits/main) [![Go Report Card](https://goreportcard.com/badge/github.com/meebey/elephant-hunt)](https://goreportcard.com/report/github.com/meebey/elephant-hunt) ![GitHub contributors](https://img.shields.io/github/contributors-anon/meebey/elephant-hunt) [![License](https://img.shields.io/github/license/meebey/elephant-hunt.svg)](https://github.com/meebey/elephant-hunt/blob/master/LICENSE)
 
 ![GitHub Repo stars](https://img.shields.io/github/stars/meebey/elephant-hunt?style=social) [![Twitter Follow](https://img.shields.io/twitter/follow/meebey?style=social)](https://twitter.com/intent/follow?screen_name=meebey)
 
