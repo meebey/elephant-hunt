@@ -1,6 +1,8 @@
 module github.com/meebey/elephant-hunt
 
-go 1.23
+go 1.23.0
+
+toolchain go1.23.7
 
 require (
 	code.cloudfoundry.org/bytefmt v0.31.0
