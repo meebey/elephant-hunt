@@ -35,7 +35,7 @@ func main() {
 		fmt.Printf("Error getting processes: %v\n", err)
 		return
 	}
-	fmt.Printf("Analysing %d processes...\n", len(processes))
+	fmt.Printf("Analysing %d running processes...\n", len(processes))
 
 	// analyse each process
 	processInfos := []ProcessInfo{}
@@ -117,11 +117,18 @@ func main() {
 	// same executable running as different users do increase the exposure though as more data is at risk.
 
 	for _, info := range sortedProcessInfos {
+		var displayedName string
+		if info.name == "" {
+			displayedName = "N/A"
+		} else {
+			displayedName = info.name
+		}
+
 		fmt.Printf("PID: %6d | UID: %3d | Size: %3.1f/%3.1f MB | Name: %s | Executable Path: %s \n",
 			info.pid, info.user_id,
 			float64(info.executable_size_in_bytes)/1024/1024,
 			float64(info.libraries_size_in_bytes)/1024/1024,
-			info.name, info.executable_path)
+			displayedName, info.executable_path)
 	}
 }
 
