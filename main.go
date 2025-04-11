@@ -54,6 +54,16 @@ func main() {
 			continue
 		}
 
+		// don't analyse same binary running as same user again (a priv process still has higher risk)
+		isProcessedAlreadyAnalysed := From(processInfos).CountWithT(
+			func(p ProcessInfo) bool {
+				return p.executable_path == procInfo.executable_path &&
+					p.user_id == procInfo.user_id
+			}) > 0
+		if isProcessedAlreadyAnalysed {
+			continue
+		}
+
 		fileInfo, err := os.Stat(procInfo.executable_path)
 		if err == nil {
 			procInfo.executable_size_in_bytes = fileInfo.Size()
