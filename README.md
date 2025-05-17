@@ -8,14 +8,18 @@ Elephant Hunt
 
 A new risk-based methodology to identify application attack-surface by analyzing the running processes.
 
-Currently supported:
+Supported features:
 * quantification of attack-surface with size of executable binary and its shared libraries (excluding non-executable code)
 
-Future:
+Future features/ideas:
 * a risk-score approach instead of raw technical numbers (e.g. bytes)
-* privileged vs unprivileged user
+* privileged vs unprivileged user -> privileged leads to high exposure of data
 * analyse and assess language safeness
 * analyse open ports (needs privileged user)
+* analyse and assess entry-points
+  * listening TCP/UDP ports
+  * Unix sockets
+  * file read operations
 * report with break-down per executable and size of each loaded shared library
 
 Required Software
