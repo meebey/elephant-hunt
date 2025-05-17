@@ -245,12 +245,17 @@ func getDynamicLibrarySize(libraryPath string) (int64, error) {
 		}
 		return int64(bytes), nil
 	case "linux":
-		// on Linux we can simply stat the library path as they are regular files
-		fileInfo, err := os.Stat(libraryPath)
-		if err != nil {
-			return 0, err
+		_, err2 := os.Readlink(libraryPath)
+		if err2 != nil {
+			return 0, fmt.Errorf("%s is a symbolic link", libraryPath)
+		} else {
+			// on Linux we can simply stat the library path as they are regular files
+			fileInfo, err := os.Stat(libraryPath)
+			if err != nil {
+				return 0, err
+			}
+			return fileInfo.Size(), nil
 		}
-		return fileInfo.Size(), nil
 	default:
 		return 0, fmt.Errorf("unsupported OS: %s", runningOs)
 	}
