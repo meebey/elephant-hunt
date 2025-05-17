@@ -75,14 +75,14 @@ func main() {
 		procInfo.libraries_size_in_bytes = 0
 		libraries, err := getDynamicLibraries(procInfo.executable_path)
 		if err != nil {
-			fmt.Printf("warning: could not get libraries: %s\n", err)
+			fmt.Printf("WARNING: could not get libraries: %s\n", err)
 			continue
 		}
 		for _, library := range libraries {
 			//fmt.Printf("library: %s\n", library)
 			librarySize, err := getDynamicLibrarySize(library)
 			if err != nil {
-				fmt.Printf("warning: %v\n", err)
+				fmt.Printf("WARNING: %v\n", err)
 				continue
 			}
 			procInfo.libraries_size_in_bytes += librarySize
