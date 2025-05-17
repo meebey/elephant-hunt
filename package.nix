@@ -1,22 +1,24 @@
+# build with:
+# nix-build --expr 'let pkgs = import <nixpkgs> { }; in pkgs.callPackage ./package.nix { gitReference = "BRANCH_REF"; }'
 { lib, buildGoModule, fetchFromGitHub, ... }:
 
 buildGoModule rec {
   pname = "elephant-hunt";
-  version = "unstable-2025-03-01";
+  version = "unstable-2025-05-17";
   #gitReference = "main";
-  gitReference = "a6949a3245ee2e7c4b12b4b5a49b78ddbca668e8";
+  gitReference = "0e58ef791383fb23852dea2c9d23c1d664413686";
 
   src = fetchFromGitHub {
     owner = "meebey";
     repo = "elephant-hunt";
     rev = gitReference;
     name = "${pname}-source-${version}-${gitReference}";
-    # retrieved with: nix --extra-experimental-features "nix-command flakes" flake prefetch github:0x4D31/galah/$gitRef
-    hash = "sha256-i/XEKinHm1/HWstj/gQmYqpsexBe1Q4j6ou+LMeJxuU=";
+    # retrieved with: nix --extra-experimental-features "nix-command flakes" flake prefetch github:meebey/elephant-hunt/$gitRef
+    hash = "sha256-xW4ztAXZ+1EUkb+0muDE2rOpYOAHFqLvWHEj+U83CLA=";
   };
 
   #vendorHash = lib.fakeHash;
-  vendorHash = "sha256-kqzXR7mslKPKr7Ky56ovh5G4pLTCNXEJBFq/MCSPg8g=";
+  vendorHash = "sha256-4nxLAMHEAiBRQrGdSUBEvVyOe4gUMO5CmgzYREqE0Bs=";
 
   meta = with lib; {
     homepage = "https://github.com/meebey/elephant-hunt";
