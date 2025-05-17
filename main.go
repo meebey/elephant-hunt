@@ -24,6 +24,7 @@ type ProcessInfo struct {
 	executable_path          string
 	executable_size_in_bytes int64
 	libraries_size_in_bytes  int64
+	detected_language        string
 }
 
 func main() {
@@ -54,6 +55,12 @@ func main() {
 			continue
 		}
 
+		/*
+		if procInfo.name != "dotnet" && procInfo.name != "mono" && procInfo.name != "mono-sgen" {
+			continue
+		}
+		*/
+
 		// don't analyse same binary running as same user again (a priv process still has higher risk)
 		isProcessedAlreadyAnalysed := From(processInfos).CountWithT(
 			func(p ProcessInfo) bool {
@@ -70,6 +77,26 @@ func main() {
 		}
 
 		fmt.Printf("analysing executable: %s...\n", procInfo.executable_path)
+
+		// analyze the language the binary was probably written in
+		switch {
+		case procInfo.name == "dotnet":
+			fallthrough
+		case procInfo.name == "mono":
+			fallthrough
+		case procInfo.name == "mono-sgen":
+			cmd, _ := proc.Cmdline()
+			// if this application is using the mono or dotnet runtime then the .NET executable
+			// or library filename must be a commandline argument
+			if strings.Contains(cmd, ".exe") || strings.Contains(cmd, ".dll") {
+				procInfo.detected_language = ".NET"
+			}
+		default:
+			languageInfo, err := DetectSourceLanguageFromBinary(procInfo.executable_path)
+			if err == nil {
+				procInfo.detected_language = languageInfo.MostLikelyLanguage
+			}
+		}
 
 		// analyze dynamically linked and loaded libraries into memory that increase the attack-surface
 		procInfo.libraries_size_in_bytes = 0
@@ -98,6 +125,7 @@ func main() {
 		// nm -g /nix/store/dq249g0b6iqjh3xfjc08gqy2h1590x44-alacritty-0.13.2/bin/alacritty | grep rust_panic -> rust
 		// otool -L path_to_app| grep libswiftCore.dylib -> Swift
 		// nm -g path_to_app | grep swift_stdlib -> Swift
+		// nm -U path_to_app | grep runtime.goPanic -> Go
 
 		processInfos = append(processInfos, procInfo)
 	}
@@ -124,11 +152,18 @@ func main() {
 			displayedName = info.name
 		}
 
-		fmt.Printf("PID: %6d | UID: %3d | Size: %3.1f/%3.1f MB | Name: %s | Executable Path: %s \n",
+		var displayedLanguage string
+		if info.detected_language == "" {
+			displayedLanguage = "N/A"
+		} else {
+			displayedLanguage = info.detected_language
+		}
+
+		fmt.Printf("PID: %6d | UID: %3d | Size: %3.1f/%3.1f MB | Name: %s | Lang: %s | Executable Path: %s \n",
 			info.pid, info.user_id,
 			float64(info.executable_size_in_bytes)/1024/1024,
 			float64(info.libraries_size_in_bytes)/1024/1024,
-			displayedName, info.executable_path)
+			displayedName, displayedLanguage, info.executable_path)
 	}
 }
 
