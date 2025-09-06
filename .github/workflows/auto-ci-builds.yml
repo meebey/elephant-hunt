@@ -25,10 +25,10 @@ jobs:
         go get && go mod tidy
     - name: go build
       run: |
-        go build main.go
+        go build
     - name: run
       run: |
-        ./main
+        ./elephant-hunt
 
   build_nix_macOS-latest:
     runs-on: macOS-latest
@@ -93,10 +93,10 @@ jobs:
         go get && go mod tidy
     - name: go build
       run: |
-        go build main.go
+        go build
     - name: run
       run: |
-        ./main
+        ./elephant-hunt
 
   check_deps-security:
     runs-on: ubuntu-latest

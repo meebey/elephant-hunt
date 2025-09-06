@@ -10,6 +10,7 @@ A new risk-based methodology to identify application attack-surface by analyzing
 
 Supported features:
 * quantification of attack-surface with size of executable binary and its shared libraries (excluding non-executable code)
+* analyse and detect programming language
 
 Future features/ideas:
 * a risk-score approach instead of raw technical numbers (e.g. bytes)
