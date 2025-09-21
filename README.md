@@ -27,6 +27,8 @@ Future features/ideas:
 Example Report
 ==============
 
+This is an example report of elephant-hunt running on macOS. The report itself is not the full report, as the system was actually running 900 processes, resulting in 900 lines of output. Instead, this is a curated list to give you an idea of what the report will look like.
+
     PID:   3608 | UID: 501 | Size: 24.7/441.7 MB | Name: Finder            | Lang: Swift       | Executable Path: /System/Library/CoreServices/Finder.app/Contents/MacOS/Finder
     PID:    867 | UID:   0 | Size: 98.8/27.9 MB  | Name: CloudflareWARP    | Lang: C++         | Executable Path: /Applications/Cloudflare WARP.app/Contents/Resources/CloudflareWARP
     PID:    959 | UID: 278 | Size: 0.3/16.9 MB   | Name: distnoted         | Lang: Objective-C | Executable Path: /usr/sbin/distnoted
