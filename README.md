@@ -6,7 +6,7 @@ Elephant Hunt
 
 ![GitHub Release Date](https://img.shields.io/github/release-date/meebey/elephant-hunt)
 
-A new risk-based methodology to identify application attack-surface by analyzing the running processes.
+A new risk-based methodology to identify application attack-surface by analyzing the running processes, their binaries and linked libraries.
 
 Supported features:
 * quantification of attack-surface with size of executable binary and its shared libraries (excluding non-executable code)
