@@ -30,7 +30,13 @@ Example Report
 This is an example report of elephant-hunt running on macOS. The report itself is not the full report, as the system was actually running 900 processes, resulting in 900 lines of output. Instead, this is a curated list to give you an idea of what the report will look like.
 
     PID:   3608 | UID: 501 | Size: 24.7/441.7 MB | Name: Finder            | Lang: Swift       | Executable Path: /System/Library/CoreServices/Finder.app/Contents/MacOS/Finder
+    PID:   3606 | UID: 501 | Size: 10.2/199.8 MB | Name: Dock              | Lang: Swift       | Executable Path: /System/Library/CoreServices/Dock.app/Contents/MacOS/Dock
+    PID:   3861 | UID: 501 | Size: 56.6/111.8 MB | Name: Google Drive      | Lang: Objective-C | Executable Path: /Applications/Google Drive.app/Contents/MacOS/Google Drive
     PID:    867 | UID:   0 | Size: 98.8/27.9 MB  | Name: CloudflareWARP    | Lang: C++         | Executable Path: /Applications/Cloudflare WARP.app/Contents/Resources/CloudflareWARP
+    PID:   3596 | UID: 501 | Size: 0.4/0.0 MB    | Name: Google Chrome                   | Lang: Unknown | Executable Path: /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+    PID:   3670 | UID: 501 | Size: 0.2/0.4 MB    | Name: Google Chrome Helper            | Lang: C++ | Executable Path: /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/140.0.7339.186/Helpers/Google Chrome Helper.app/Contents/MacOS/Google Chrome Helper
+    PID:   3665 | UID: 501 | Size: 0.2/0.4 MB    | Name: Google Chrome Helper (GPU)      | Lang: C++ | Executable Path: /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/140.0.7339.186/Helpers/Google Chrome Helper (GPU).app/Contents/MacOS/Google Chrome Helper (GPU)
+    PID:   3684 | UID: 501 | Size: 0.2/0.4 MB    | Name: Google Chrome Helper (Renderer) | Lang: C++ | Executable Path: /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/140.0.7339.186/Helpers/Google Chrome Helper (Renderer).app/Contents/MacOS/Google Chrome Helper (Renderer)
     PID:    959 | UID: 278 | Size: 0.3/16.9 MB   | Name: distnoted         | Lang: Objective-C | Executable Path: /usr/sbin/distnoted
     PID:  73425 | UID: 501 | Size: 2.8/5.4 MB    | Name: language-detector | Lang: Go          | Executable Path: /private/var/folders/1r/521rsgw55gs18_7rmdz13nm00000gn/T/go-build3280893093/b001/exe/language-detector
     PID:   3977 | UID: 501 | Size: 0.1/0.6 MB    | Name: dotnet            | Lang: .NET        | Executable Path: /Users/meebey/Library/Application Support/Code/User/globalStorage/ms-dotnettools.vscode-dotnet-runtime/.dotnet/8.0.20~arm64/dotnet
