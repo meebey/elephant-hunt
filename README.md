@@ -9,6 +9,7 @@ Elephant Hunt
 A new risk-based methodology to identify application attack-surface by analyzing the running processes, their binaries and linked libraries.
 
 Supported features:
+* report covering all running processes
 * quantification of attack-surface with size of executable binary and its shared libraries (excluding non-executable code)
 * analysis and detection of programming language
 
@@ -22,6 +23,15 @@ Future features/ideas:
   * Unix sockets
   * file read operations
 * report with break-down per executable and size of each loaded shared library
+
+Example Report
+==============
+
+    PID:   3608 | UID: 501 | Size: 24.7/441.7 MB | Name: Finder            | Lang: Swift       | Executable Path: /System/Library/CoreServices/Finder.app/Contents/MacOS/Finder
+    PID:    867 | UID:   0 | Size: 98.8/27.9 MB  | Name: CloudflareWARP    | Lang: C++         | Executable Path: /Applications/Cloudflare WARP.app/Contents/Resources/CloudflareWARP
+    PID:    959 | UID: 278 | Size: 0.3/16.9 MB   | Name: distnoted         | Lang: Objective-C | Executable Path: /usr/sbin/distnoted
+    PID:  73425 | UID: 501 | Size: 2.8/5.4 MB    | Name: language-detector | Lang: Go          | Executable Path: /private/var/folders/1r/521rsgw55gs18_7rmdz13nm00000gn/T/go-build3280893093/b001/exe/language-detector
+    PID:   3977 | UID: 501 | Size: 0.1/0.6 MB    | Name: dotnet            | Lang: .NET        | Executable Path: /Users/meebey/Library/Application Support/Code/User/globalStorage/ms-dotnettools.vscode-dotnet-runtime/.dotnet/8.0.20~arm64/dotnet
 
 Required Software
 =================
