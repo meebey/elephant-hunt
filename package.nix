@@ -22,7 +22,7 @@ buildGoModule rec {
 
   meta = with lib; {
     homepage = "https://github.com/meebey/elephant-hunt";
-    description = "LLM-powered web honeypot";
+    description = "attack-surface risk analyser";
     license = licenses.gpl3;
   };
 }
